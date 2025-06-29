@@ -5,103 +5,119 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DWA Blog</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Roboto&display=swap"
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;700&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <!-- g font -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Playwrite+AU+SA:wght@100..400&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
-  <!--fonta  -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
     integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Playwrite+AU+SA:wght@100..400&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+    rel="stylesheet">
+
   <style>
     :root {
-      --gold: #d4af37;
-      --dark: #0c0c0c;
-      --grey: #aaaaaa;
+      --primary-color: #0A2239;
+      --accent-color: #D4A017;
+      --text-color: #F5F5F5;
+      --secondary-text: #B0B0B0;
+      --background-light: #1A2F4A;
+      --border-color: #333333;
+      --muted-red: #A63A50;
     }
 
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      font-family: 'Roboto', sans-serif;
+      outline: none;
+      text-decoration: none;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 80px;
     }
 
     body {
-      background: var(--dark);
-      color: white;
-      font-family: 'Roboto', sans-serif;
+      background-color: var(--primary-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      overflow-x: hidden;
+      position: relative;
     }
 
-    /* Redesigned Header */
-    header {
-      background: linear-gradient(to bottom, #0b0b0b, rgba(11, 11, 11, 0.9));
-      padding: 25px 40px;
-      position: sticky;
+    /* Scroll Progress Bar */
+    .scroll-progress {
+      position: fixed;
       top: 0;
-      z-index: 1000;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      left: 0;
+      width: 0;
+      height: 4px;
+      background: var(--accent-color);
+      z-index: 2000;
+      transition: width 0.3s ease;
     }
 
     .header-container {
-      max-width: 1240px;
-      margin: auto;
       display: flex;
-      align-items: center;
       justify-content: space-between;
+      align-items: center;
+      padding: 20px 50px;
+      background-color: var(--primary-color);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .header-container.scrolled {
+      background-color: var(--background-light);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
     }
 
     .logo {
       font-family: 'Playfair Display', serif;
-      font-size: 2.2rem;
-      color: var(--gold);
-      text-decoration: none;
-      letter-spacing: 2px;
-      position: relative;
-    }
-
-    .logo::after {
-      content: '';
-      position: absolute;
-      bottom: -5px;
-      left: 0;
-      width: 50%;
-      height: 2px;
-      background: var(--gold);
-      transition: width 0.3s ease;
-    }
-
-    .logo:hover::after {
-      width: 100%;
+      font-size: 30px;
+      font-weight: 700;
+      color: var(--accent-color);
     }
 
     .nav-links {
       display: flex;
-      gap: 35px;
+      align-items: center;
+      gap: 25px;
+    }
+
+    .nav-links ul {
+      display: flex;
+      gap: 25px;
+      list-style: none;
     }
 
     .nav-links a {
-      color: var(--grey);
-      text-decoration: none;
-      font-size: 0.95rem;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
+      font-size: 16px;
+      font-weight: 400;
+      color: var(--text-color);
       position: relative;
       transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent-color);
     }
 
     .nav-links a::after {
       content: '';
       position: absolute;
-      bottom: -5px;
-      left: 0;
       width: 0;
-      height: 1px;
-      background: var(--gold);
+      height: 2px;
+      bottom: -4px;
+      left: 0;
+      background-color: var(--accent-color);
       transition: width 0.3s ease;
     }
 
@@ -109,550 +125,1068 @@
       width: 100%;
     }
 
-    .nav-links a:hover {
-      color: var(--gold);
-    }
-
     .cta-button {
-      background: linear-gradient(135deg, var(--gold), #e0c050);
-      color: #000;
-      padding: 12px 25px;
-      border-radius: 30px;
-      text-decoration: none;
-      font-size: 0.9rem;
-      font-weight: bold;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      background-color: var(--accent-color);
+      color: var(--primary-color);
+      padding: 10px 25px;
+      border: none;
+      border-radius: 5px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
     }
 
     .cta-button:hover {
+      background-color: #b58914;
       transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
     }
 
     .hamburger {
       display: none;
-      font-size: 1.8rem;
-      color: var(--gold);
       cursor: pointer;
+      font-size: 26px;
+      color: var(--text-color);
     }
 
-    /* Hero Section */
     .hero {
-      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('https://images.augustman.com/wp-content/uploads/sites/3/2022/06/16175502/prestige-hero-except-hk.jpeg') no-repeat center center;
+      background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
       background-size: cover;
-      padding: 150px 20px;
+      background-position: center;
       text-align: center;
-      min-height: 60vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
+      padding: 150px 20px;
+      position: relative;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(rgba(10, 34, 57, 0.7), rgba(10, 34, 57, 0.7));
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      animation: fadeInUp 1s ease;
     }
 
     .hero h1 {
       font-family: 'Playfair Display', serif;
-      font-size: 4rem;
-      color: var(--gold);
-      margin-bottom: 15px;
-      letter-spacing: 2px;
+      font-size: 52px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: var(--text-color);
     }
 
     .hero p {
-      font-size: 1.4rem;
-      color: var(--grey);
-      letter-spacing: 1.5px;
-      max-width: 600px;
+      font-size: 20px;
+      font-weight: 300;
+      color: var(--secondary-text);
+      max-width: 700px;
+      margin: 0 auto;
     }
 
     .container {
-      max-width: 1240px;
-      margin: auto;
+      max-width: 1200px;
+      margin: 0 auto;
       padding: 50px 20px;
+      display: flex;
+      gap: 30px;
+      align-items: stretch;
+    }
+
+    .main-content {
+      flex: 3;
+    }
+
+    .sidebar {
+      flex: 1;
+      background: var(--background-light);
+      padding: 25px;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+    }
+
+    .sidebar-section {
+      margin-bottom: 30px;
+      opacity: 0;
+      transform: translateX(50px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    .sidebar-section.visible {
+      opacity: 1;
+      transform: translateX(0);
     }
 
     .section-title {
-      font-size: 2.5rem;
-      font-weight: bold;
-      color: var(--gold);
-      margin-bottom: 40px;
-      text-align: center;
       font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: 30px;
+      color: var(--accent-color);
     }
 
-    /* Featured Post */
+    .search-filter {
+      background: var(--background-light);
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 40px;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    .search-filter.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .search-filter form {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .search-filter input,
+    .search-filter select {
+      padding: 12px;
+      border: 1px solid var(--border-color);
+      border-radius: 5px;
+      background: var(--primary-color);
+      color: var(--text-color);
+      font-size: 15px;
+      flex: 1;
+      min-width: 150px;
+    }
+
+    .search-filter button {
+      background: var(--accent-color);
+      color: var(--primary-color);
+      padding: 12px 25px;
+      border: none;
+      border-radius: 5px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .search-filter button:hover {
+      background: #b58914;
+    }
+
     .featured-post {
       margin-bottom: 60px;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    .featured-post.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .featured-card {
       display: flex;
-      background-color: #151515;
+      background: var(--background-light);
       border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .featured-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
     }
 
     .featured-card img {
-      width: 50%;
+      width: 45%;
       object-fit: cover;
     }
 
     .featured-content {
-      padding: 40px;
-      width: 50%;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
-    .featured-content .blog-tag {
-      font-size: 0.9rem;
-      padding: 8px 15px;
+    .blog-tag {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--muted-red);
+      margin-bottom: 10px;
     }
 
     .featured-content h3 {
-      font-size: 2rem;
       font-family: 'Playfair Display', serif;
-      margin-bottom: 20px;
+      font-size: 30px;
+      font-weight: 700;
+      margin-bottom: 15px;
     }
 
     .featured-content p {
-      font-size: 1.1rem;
-      color: var(--grey);
-      line-height: 1.7;
+      font-weight: 300;
+      color: var(--secondary-text);
     }
 
-    /* Category Filter */
-    .category-filter {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
       margin-bottom: 40px;
     }
 
-    .category-filter button {
-      background: #151515;
-      color: var(--grey);
-      border: 1px solid var(--gold);
-      padding: 10px 20px;
-      border-radius: 25px;
-      font-size: 0.9rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    .category-filter button:hover,
-    .category-filter button.active {
-      background: var(--gold);
-      color: #000;
-    }
-
-    /* Blog Grid */
-    .blog-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 40px;
-    }
-
     .blog-card {
-      background-color: #151515;
+      background: var(--background-light);
       border-radius: 12px;
       overflow: hidden;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      opacity: 1;
+      transform: translateY(6px) scale(0.95);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
     }
 
+
     .blog-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
     }
 
     .blog-card img {
       width: 100%;
-      height: 220px;
+      height: 200px;
       object-fit: cover;
     }
 
     .blog-content {
-      padding: 25px;
+      padding: 20px;
     }
 
-    .blog-tag {
-      display: inline-block;
-      font-size: 0.75rem;
-      padding: 5px 12px;
-      background-color: var(--gold);
-      color: #000;
-      border-radius: 20px;
-      font-weight: bold;
-      margin-bottom: 15px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
+    .blog-meta {
+      font-size: 13px;
+      color: var(--secondary-text);
+      margin-bottom: 10px;
     }
 
     .blog-content h3 {
-      font-size: 1.4rem;
       font-family: 'Playfair Display', serif;
-      color: #fff;
-      margin-bottom: 15px;
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 10px;
     }
 
     .blog-content p {
-      font-size: 0.95rem;
-      color: var(--grey);
-      line-height: 1.6;
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--secondary-text);
+      margin-bottom: 15px;
     }
 
-    /* Newsletter Sign-up */
-    .newsletter {
-      background: #151515;
-      padding: 50px;
-      text-align: center;
-      border-radius: 12px;
-      margin: 60px 0;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-      width: 100%;
+    .social-share {
       display: flex;
-      flex-direction: column;
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .social-share a {
+      font-size: 18px;
+      color: var(--secondary-text);
+      transition: color 0.3s ease, transform 0.2s ease;
+    }
+
+    .social-share a:hover {
+      color: var(--accent-color);
+      transform: translateY(-2px);
+    }
+
+    .related-posts {
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .related-posts h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 15px;
+      color: var(--accent-color);
+    }
+
+    .related-posts .blog-card {
+      display: flex;
+      gap: 15px;
       align-items: center;
-      justify-content: center;
+      padding: 10px;
+      background: var(--background-light);
+      border-radius: 10px;
+      margin-bottom: 15px;
+      box-shadow: 0 3px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .related-posts .blog-card:hover {
+      transform: translateY(-3px);
+    }
+
+    .related-posts .blog-card img {
+      width: 80px;
+      height: 80px;
+    }
+
+    .related-posts .blog-content {
+      padding: 10px;
+    }
+
+    .related-posts .blog-content h3 {
+      font-size: 16px;
+    }
+
+    .related-posts .blog-content p,
+    .related-posts .blog-meta,
+    .related-posts .social-share {
+      display: none;
+    }
+
+    .newsletter {
+      background: var(--background-light);
+      text-align: center;
+      padding: 60px 20px;
+      margin: 50px 0;
+      border-radius: 12px;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    .newsletter.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .newsletter h3 {
-      font-weight: bold;
-      font-size: 2rem;
-      color: var(--gold);
+      font-family: 'Playfair Display', serif;
+      font-size: 30px;
+      font-weight: 700;
+      margin-bottom: 15px;
+      color: var(--accent-color);
+    }
+
+    .newsletter p {
+      font-size: 16px;
+      font-weight: 300;
+      color: var(--secondary-text);
       margin-bottom: 20px;
     }
 
     .newsletter form {
       display: flex;
-      flex-wrap: nowrap;
-      justify-content: center;
       gap: 10px;
       max-width: 500px;
       margin: 0 auto;
     }
 
-    .newsletter input[type="email"] {
-      padding: 12px 25px;
-      border: 1px solid var(--gold);
-      background: #0b0b0b;
-      color: white;
-      border-radius: 25px;
+    .newsletter input {
+      padding: 12px;
+      border: 1px solid var(--border-color);
+      border-radius: 5px;
       width: 70%;
-      font-size: 1rem;
+      background: var(--primary-color);
+      color: var(--text-color);
+      font-size: 15px;
     }
 
     .newsletter button {
+      background: var(--accent-color);
+      color: var(--primary-color);
       padding: 12px 25px;
-      background: var(--gold);
-      color: #000;
       border: none;
-      border-radius: 25px;
-      font-size: 1rem;
+      border-radius: 5px;
+      font-weight: 700;
       cursor: pointer;
       transition: background 0.3s ease;
-      &:hover {
-        background: #e0c050;
-      }
     }
 
-  
+    .newsletter button:hover {
+      background: #b58914;
+    }
 
-    /* Social Gallery */
-    .social-gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    .sidebar h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 15px;
+      color: var(--accent-color);
+    }
+
+    .sidebar ul {
+      list-style: none;
+    }
+
+    .sidebar li {
+      margin-bottom: 10px;
+    }
+
+    .sidebar a {
+      font-size: 14px;
+      color: var(--secondary-text);
+      transition: color 0.3s ease;
+    }
+
+    .sidebar a:hover {
+      color: var(--accent-color);
+    }
+
+    .popular-posts .blog-card {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      padding: 10px;
+    }
+
+    .popular-posts .blog-card img {
+      width: 60px;
+      height: 60px;
+    }
+
+    .popular-posts .blog-content {
+      padding: 0;
+    }
+
+    .popular-posts .blog-content h3 {
+      font-size: 14px;
+    }
+
+    .popular-posts .blog-content p,
+    .popular-posts .blog-meta,
+    .popular-posts .social-share {
+      display: none;
+    }
+
+    .recent-comments .comment {
+      display: flex;
       gap: 10px;
-      margin-bottom: 60px;
+      align-items: center;
+      margin-bottom: 15px;
     }
 
-    .social-gallery img {
-      width: 100%;
-      height: 200px;
+    .recent-comments img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
       object-fit: cover;
-      border-radius: 8px;
-      transition: transform 0.3s ease;
     }
 
-    .social-gallery img:hover {
-      transform: scale(1.05);
+    .recent-comments .comment-content p {
+      font-size: 14px;
+      color: var(--secondary-text);
     }
 
-    /* Redesigned Footer with Font Awesome Icons */
-    footer {
-      background: linear-gradient(to top, #0b0b0b, #151515);
-      padding: 80px 20px 40px;
-      color: var(--grey);
-      font-family: 'Roboto', sans-serif;
+    .recent-comments .comment-content span {
+      font-size: 12px;
+      color: var(--muted-red);
     }
 
     .footer-container {
-      max-width: 1240px;
-      margin: auto;
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 40px;
-      text-align: center;
+      gap: 30px;
+      padding: 60px 50px;
+      background: var(--background-light);
+      border-top: 1px solid var(--border-color);
+    }
+
+    .footer-section {
+      margin-bottom: 30px;
+      opacity: 0;
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    .footer-section.visible {
+      opacity: 1;
+    }
+
+    .footer-section:nth-child(1) {
+      transform: translateY(30px);
+    }
+
+    .footer-section:nth-child(1).visible {
+      transform: translateY(0);
+      transition-delay: 0.1s;
+    }
+
+    .footer-section:nth-child(2) {
+      transform: translateX(-30px);
+    }
+
+    .footer-section:nth-child(2).visible {
+      transform: translateX(0);
+      transition-delay: 0.2s;
+    }
+
+    .footer-section:nth-child(3) {
+      transform: translateX(30px);
+    }
+
+    .footer-section:nth-child(3).visible {
+      transform: translateX(0);
+      transition-delay: 0.3s;
+    }
+
+    .footer-section:nth-child(4) {
+      transform: scale(0.95);
+    }
+
+    .footer-section:nth-child(4).visible {
+      transform: scale(1);
+      transition-delay: 0.4s;
     }
 
     .footer-logo {
       font-family: 'Playfair Display', serif;
-      font-size: 2.2rem;
-      color: var(--gold);
+      font-size: 30px;
+      font-weight: 700;
+      color: var(--accent-color);
       margin-bottom: 20px;
-      letter-spacing: 2px;
     }
 
-    .footer-links h4,
-    .footer-social h4 {
+    .footer-section h4 {
       font-family: 'Playfair Display', serif;
-      font-size: 1.3rem;
-      color: var(--gold);
+      font-size: 22px;
+      font-weight: 700;
       margin-bottom: 20px;
+      color: var(--accent-color);
     }
 
     .footer-links a {
       display: block;
-      color: var(--grey);
-      text-decoration: none;
-      font-size: 0.9rem;
-      margin: 12px 0;
-      transition: color 0.3s ease;
+      margin-bottom: 12px;
+      font-size: 15px;
+      color: var(--secondary-text);
+      transition: color 0.3s ease, padding-left 0.3s ease;
     }
 
     .footer-links a:hover {
-      color: var(--gold);
+      color: var(--accent-color);
+      padding-left: 5px;
     }
 
-    .footer-social .social-icons {
+    .social-icons {
       display: flex;
-      justify-content: center;
-      gap: 20px;
+      gap: 15px;
+      flex-wrap: wrap;
     }
 
-    .footer-social a {
-      color: var(--grey);
-      font-size: 1.5rem;
-      transition: color 0.3s ease, transform 0.3s ease;
+    .social-icons a {
+      font-size: 22px;
+      color: var(--secondary-text);
+      transition: color 0.3s ease, transform 0.2s ease;
     }
 
-    .footer-social a:hover {
-      color: var(--gold);
-      transform: translateY(-3px);
+    .social-icons a:hover {
+      color: var(--accent-color);
+      transform: translateY(-2px);
+    }
+
+    .footer-contact p {
+      font-size: 15px;
+      color: var(--secondary-text);
+      margin-bottom: 10px;
+    }
+
+    .footer-contact a {
+      color: var(--accent-color);
+      transition: color 0.3s ease;
+    }
+
+    .footer-contact a:hover {
+      color: #b58914;
+    }
+
+    .footer-newsletter form {
+      display: flex;
+      gap: 10px;
+      max-width: 300px;
+      margin-top: 15px;
+    }
+
+    .footer-newsletter input {
+      padding: 12px;
+      border: 1px solid var(--border-color);
+      border-radius: 5px;
+      background: var(--primary-color);
+      color: var(--text-color);
+      font-size: 15px;
+      flex: 1;
+    }
+
+    .footer-newsletter button {
+      background: var(--accent-color);
+      color: var(--primary-color);
+      padding: 12px 20px;
+      border: none;
+      border-radius: 5px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    .footer-newsletter button:hover {
+      background: #b58914;
+      transform: translateY(-2px);
     }
 
     .footer-bottom {
       text-align: center;
-      padding-top: 50px;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      margin-top: 50px;
-      font-size: 0.85rem;
-      color: var(--grey);
-      letter-spacing: 1px;
+      padding: 25px;
+      background: var(--primary-color);
+      font-size: 14px;
+      color: var(--secondary-text);
+      border-top: 1px solid var(--border-color);
+      transform: translateY(20px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+      transition-delay: 0.5s;
+    }
+    .footer-bottom p {
+      margin: 0;
     }
 
-    /* Responsive Design */
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
     @media (max-width: 768px) {
-      .header-container {
-        flex-wrap: wrap;
-        position: relative;
+      .container {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        order: -1;
+        min-height: auto;
       }
 
       .nav-links {
         display: none;
-        flex-direction: column;
-        width: 100%;
-        background: #0b0b0b;
         position: absolute;
-        top: 100%;
+        top: 70px;
         left: 0;
+        width: 100%;
+        background: var(--background-light);
         padding: 20px;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        flex-direction: column;
+        align-items: center;
       }
 
       .nav-links.active {
         display: flex;
       }
 
-      .nav-links a {
-        margin: 12px 0;
-        font-size: 1.1rem;
-      }
-
-      .cta-button {
-        margin-top: 12px;
+      .nav-links ul {
+        flex-direction: column;
+        gap: 15px;
       }
 
       .hamburger {
         display: block;
       }
 
-      .hero h1 {
-        font-size: 2.5rem;
-      }
-
-      .hero p {
-        font-size: 1.1rem;
-      }
-
-      .section-title {
-        font-size: 1.8rem;
-      }
-
       .featured-card {
         flex-direction: column;
       }
 
-      .featured-card img,
-      .featured-content {
+      .featured-card img {
         width: 100%;
+        height: 300px;
       }
 
-      .newsletter form {
+      .hero h1 {
+        font-size: 40px;
+      }
+
+      .hero p {
+        font-size: 18px;
+      }
+
+      .search-filter form {
         flex-direction: column;
-        gap: 15px;
-      }
-
-      .newsletter input[type="email"] {
-        width: 100%;
       }
 
       .footer-container {
         grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .social-icons {
+        justify-content: center;
+      }
+
+      .footer-newsletter form {
+        margin: 15px auto;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 32px;
+      }
+
+      .section-title {
+        font-size: 28px;
       }
     }
   </style>
 </head>
 
 <body>
-  <!-- Redesigned Header -->
+  <div class="scroll-progress"></div>
   <header>
     <div class="header-container">
       <a href="#" class="logo">DWA</a>
       <nav class="nav-links">
-        <a href="#">Home</a>
-        <a href="#">Blog</a>
-        <a href="#">About</a>
-        <a href="#">Contact</a>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#blog">Blog</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button class="cta-button">Join Now</button>
       </nav>
-      <a href="#" class="cta-button">Join Now</a>
       <div class="hamburger"><i class="fas fa-bars"></i></div>
     </div>
   </header>
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <h1>DWA Blog</h1>
-    <p>Elevate your lifestyle with curated stories on Individually, luxury, design, and inspiration.</p>
+  <section class="hero scroll-reveal" id="home">
+    <div class="hero-content">
+      <h1>DWA Blog</h1>
+      <p>Elegance in Every Story: Luxury, Design, Inspiration</p>
+    </div>
   </section>
 
-  <!-- Featured Post -->
-  <section class="container featured-post">
-    <h2 class="section-title">Featured Story</h2>
-    <div class="featured-card">
-      <img src="https://www.alhabibpaneldoors.com/images/interior-item/elevated-bedroom-ipc085.jpeg"
-        alt="Featured Blog">
-      <div class="featured-content">
-        <span class="blog-tag">Design</span>
-        <h3>Timeless Elegance in Modern Interiors</h3>
-        <p>Discover how to blend minimalism with luxury to create spaces that inspire and captivate.</p>
+  <div class="container">
+    <div class="main-content">
+      <section class="search-filter scroll-reveal">
+        <form>
+          <input type="text" placeholder="Search posts...">
+          <select>
+            <option value="">All Categories</option>
+            <option value="design">Design</option>
+            <option value="fashion">Fashion</option>
+            <option value="travel">Travel</option>
+          </select>
+          <select>
+            <option value="">All Tags</option>
+            <option value="minimalism">Minimalism</option>
+            <option value="trends">Trends</option>
+            <option value="luxury">Luxury</option>
+          </select>
+          <select>
+            <option value="">All Dates</option>
+            <option value="2025">2025</option>
+            <option value="2024">2024</option>
+          </select>
+          <button type="submit">Filter</button>
+        </form>
+      </section>
+
+      <section class="featured-post scroll-reveal" id="blog">
+        <h2 class="section-title">Featured Story</h2>
+        <div class="featured-card">
+          <img src="https://www.alhabibpaneldoors.com/images/interior-item/elevated-bedroom-ipc085.jpeg"
+            alt="Featured Blog">
+          <div class="featured-content">
+            <span class="blog-tag">Design</span>
+            <h3>Timeless Elegance in Modern Interiors</h3>
+            <p>Discover how to blend minimalism with luxury to create spaces that inspire and captivate.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="latest-posts scroll-reveal">
+        <h2 class="section-title">Latest Posts</h2>
+        <div class="blog-grid">
+          <div class="blog-card scroll-reveal" style="transition-delay: 0.1s;">
+            <img src="https://www.alhabibpaneldoors.com/images/interior-item/elevated-bedroom-ipc085.jpeg" alt="Blog 1">
+            <div class="blog-content">
+              <div class="blog-meta">Design | June 25, 2025</div>
+              <h3>Elevated Interiors</h3>
+              <p>Explore timeless interior trends that add elegance and minimalism to any modern space.</p>
+              <div class="social-share">
+                <a href="#" aria-label="Share on Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="Share on Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Share on Pinterest"><i class="fab fa-pinterest"></i></a>
+              </div>
+              <div class="related-posts">
+                <h4>Related Posts</h4>
+                <div class="blog-card">
+                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnjdhv5yMF5_Rq27xeBGh_1SAQKUhHGU8AIw&s" alt="Related 1">
+                  <div class="blog-content">
+                    <h3>Minimalist Design Tips</h3>
+                  </div>
+                </div>
+                <div class="blog-card">
+                  <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48" alt="Related 2">
+                  <div class="blog-content">
+                    <h3>Modern Home Aesthetics</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="blog-card scroll-reveal" style="transition-delay: 0.2s;">
+            <img src="https://media.fortuneindia.com/fortune-india/2025-05-08/wjbxc7zt/shutterstock2524883205768388817899.jpeg?w=640&auto=format,compress&fit=max&q=70" alt="Blog 2">
+            <div class="blog-content">
+              <div class="blog-meta">Fashion | June 20, 2025</div>
+              <h3>The Return of Gold</h3>
+              <p>Gold accents are trending again – learn how to use them with class in your wardrobe.</p>
+              <div class="social-share">
+                <a href="#" aria-label="Share on Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="Share on Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Share on Pinterest"><i class="fab fa-pinterest"></i></a>
+              </div>
+              <div class="related-posts">
+                <h4>Related Posts</h4>
+                <div class="blog-card">
+                  <img src="https://megafurniture.sg/cdn/shop/articles/small-bedroom-minimalist-interior-design-makeover-tips-megafurniture.jpg?v=1747973981" alt="Related 1">
+                  <div class="blog-content">
+                    <h3>Fashion Trends 2025</h3>
+                  </div>
+                </div>
+                <div class="blog-card">
+                  <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48" alt="Related 2">
+                  <div class="blog-content">
+                    <h3>Styling Accessories</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="blog-card scroll-reveal" style="transition-delay: 0.3s;">
+            <img
+              src="https://skybirdtravel.com/wp-content/uploads/2023/08/featured-image-maldives-top-luxury-retreats-sky-bird-travel-tours-1024x768.jpg"
+              alt="Blog 3">
+            <div class="blog-content">
+              <div class="blog-meta">Travel | June 15, 2025</div>
+              <h3>Luxury Retreats 2025</h3>
+              <p>Discover the most exquisite travel destinations curated for premium experiences.</p>
+              <div class="social-share">
+                <a href="#" aria-label="Share on Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="Share on Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Share on Pinterest"><i class="fab fa-pinterest"></i></a>
+              </div>
+              <div class="related-posts">
+                <h4>Related Posts</h4>
+                <div class="blog-card">
+                  <img src="https://assets-news.housing.com/news/wp-content/uploads/2022/02/18205828/Minimalist-interior-design-Tips-to-make-your-home-look-minimal.jpg" alt="Related 1">
+                  <div class="blog-content">
+                    <h3>Top Beach Destinations</h3>
+                  </div>
+                </div>
+                <div class="blog-card">
+                  <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48" alt="Related 2">
+                  <div class="blog-content">
+                    <h3>Luxury Travel Tips</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="blog-card scroll-reveal" style="transition-delay: 0.4s;">
+            <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f" alt="Blog 4">
+            <div class="blog-content">
+              <div class="blog-meta">Lifestyle | June 10, 2025</div>
+              <h3>Curating a Luxe Life</h3>
+              <p>Simple habits and choices to elevate your everyday lifestyle with sophistication.</p>
+              <div class="social-share">
+                <a href="#" aria-label="Share on Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="Share on Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Share on Pinterest"><i class="fab fa-pinterest"></i></a>
+              </div>
+              <div class="related-posts">
+                <h4>Related Posts</h4>
+                <div class="blog-card">
+                  <img src="https://czarinterior.com/wp-content/uploads/2024/06/minimalist-interior-design-scaled.jpg" alt="Related 1">
+                  <div class="blog-content">
+                    <h3>Daily Elegance</h3>
+                  </div>
+                </div>
+                <div class="blog-card">
+                  <img src="https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0" alt="Related 2">
+                  <div class="blog-content">
+                    <h3>Wellness and Style</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="newsletter scroll-reveal">
+        <h3>Join Our Newsletter</h3>
+        <p>Stay inspired with the latest in luxury, design, and style.</p>
+        <form>
+          <input type="email" placeholder="Enter your email" required>
+          <button type="submit">Subscribe</button>
+        </form>
+      </section>
+    </div>
+
+    <aside class="sidebar scroll-reveal">
+      <div class="sidebar-section scroll-reveal" style="transition-delay: 0.1s;">
+        <h4>Categories</h4>
+        <ul>
+          <li><a href="#">Design</a></li>
+          <li><a href="#">Fashion</a></li>
+          <li><a href="#">Travel</a></li>
+          <li><a href="#">Lifestyle</a></li>
+          <li><a href="#">Architecture</a></li>
+          <li><a href="#">Art</a></li>
+          <li><a href="#">Culture</a></li>
+        </ul>
       </div>
-    </div>
-  </section>
-
-  <!-- Category Filter -->
-  <section class="container">
-    <div class="category-filter">
-      <button class="active">All</button>
-      <button>Design</button>
-      <button>Fashion</button>
-      <button>Travel</button>
-    </div>
-  </section>
-
-  <!-- Blog Grid -->
-  <section class="container">
-    <h2 class="section-title">Latest Features</h2>
-    <div class="blog-grid">
-      <div class="blog-card">
-        <img src="https://www.alhabibpaneldoors.com/images/interior-item/elevated-bedroom-ipc085.jpeg" alt="Blog 1">
-        <div class="blog-content">
-          <span class="blog-tag">Design</span>
-          <h3>Elevated Interiors</h3>
-          <p>Explore timeless interior trends that add elegance and minimalism to any modern space.</p>
+      <div class="sidebar-section scroll-reveal" style="transition-delay: 0.2s;">
+        <h4>Popular Tags</h4>
+        <ul>
+          <li><a href="#">Minimalism</a></li>
+          <li><a href="#">Luxury</a></li>
+          <li><a href="#">Trends</a></li>
+          <li><a href="#">Inspiration</a></li>
+          <li><a href="#">Sustainability</a></li>
+          <li><a href="#">Modernism</a></li>
+          <li><a href="#">Travel Tips</a></li>
+          <li><a href="#">Fashion Week</a></li>
+        </ul>
+      </div>
+      <div class="sidebar-section popular-posts scroll-reveal" style="transition-delay: 0.3s;">
+        <h4>Popular Posts</h4>
+        <div class="blog-card">
+          <img src="https://www.alhabibpaneldoors.com/images/interior-item/elevated-bedroom-ipc085.jpeg"
+            alt="Popular 1">
+          <div class="blog-content">
+            <h3>Elevated Interiors</h3>
+          </div>
+        </div>
+        <div class="blog-card">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=0GcT7UP_JrsI-gy20CQUkHCR3mBTsTKowesYyFw&s" alt="Popular 2">
+          <div class="blog-content">
+            <h3>The Return of Gold</h3>
+          </div>
+        </div>
+        <div class="blog-card">
+          <img
+            src="https://skybirdtravel.com/wp-content/uploads/2023/08/featured-image-maldives-top-luxury-retreats-sky-bird-travel-tours-1024x768.jpg"
+            alt="Popular 3">
+          <div class="blog-content">
+            <h3>Luxury Retreats 2025</h3>
+          </div>
+        </div>
+        <div class="blog-card">
+          <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f" alt="Popular 4">
+          <div class="blog-content">
+            <h3>Curating a Luxe Life</h3>
+          </div>
+        </div>
+        <div class="blog-card">
+          <img src="https://images.squarespace-cdn.com/content/v1/5d2346cbe7875300014eeb79/1719048588233-OXANJ3ZTG1A4OQ26ZCB7/WS_Blue_Barbara_1-1_9.jpg?format=500w" alt="Popular 5">
+          <div class="blog-content">
+            <h3>Daily Elegance</h3>
+          </div>
         </div>
       </div>
-
-      <div class="blog-card">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTc__mJ5cTUYzQAKeX87PcteA7WQQNZvfBR2A&s"
-          alt="Blog 2">
-        <div class="blog-content">
-          <span class="blog-tag">Fashion</span>
-          <h3>The Return of Gold</h3>
-          <p>Gold accents are trending again – learn how to use them with class in your wardrobe.</p>
+      <div class="sidebar-section recent-comments scroll-reveal" style="transition-delay: 0.4s;">
+        <h4>Recent Comments</h4>
+        <div class="comment">
+          <img src="https://images.unsplash.com/photo-1527980965255-d3b416303d12" alt="Commenter 1">
+          <div class="comment-content">
+            <p>"Love the minimalist tips! Transformed my living space." <span>- Jane D.</span></p>
+          </div>
+        </div>
+        <div class="comment">
+          <img src="https://t4.ftcdn.net/jpg/02/82/23/61/360_F_282236139_eIHcYkf0uvq63KGNxpBCn1gcyQoZudXP.jpg" alt="Commenter 2">
+          <div class="comment-content">
+            <p>"Gold is back in such a chic way, great article!" <span>- Emma S.</span></p>
+          </div>
+        </div>
+        <div class="comment">
+          <img src="https://t4.ftcdn.net/jpg/03/57/24/13/360_F_357241356_fsGNwIrM2QtrKcgDYGv4NRApJOoKMT0s.jpg" alt="Commenter 3">
+          <div class="comment-content">
+            <p>"These travel destinations are now on my list!" <span>- Michael R.</span></p>
+          </div>
+        </div>
+        <div class="comment">
+          <img src="https://st5.depositphotos.com/56736196/70986/i/450/depositphotos_709869000-stock-photo-close-young-beautiful-asian-woman.jpg" alt="Commenter 4">
+          <div class="comment-content">
+            <p>"Such an inspiring read on luxury lifestyles." <span>- Sophia L.</span></p>
+          </div>
         </div>
       </div>
+    </aside>
+  </div>
 
-      <div class="blog-card">
-        <img
-          src="https://skybirdtravel.com/wp-content/uploads/2023/08/featured-image-maldives-top-luxury-retreats-sky-bird-travel-tours-1024x768.jpg"
-          alt="Blog 3">
-        <div class="blog-content">
-          <span class="blog-tag">Travel</span>
-          <h3>Luxury Retreats 2025</h3>
-          <p>Discover the most exquisite travel destinations curated for premium experiences.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Newsletter Sign-up -->
-  <section class="newsletter">
-    <h3>Join Our Newsletter</h3>
-    <p style="color: var(--grey); margin-bottom: 20px;">Stay inspired with the latest in luxury and style.</p>
-    <form>
-      <input type="email" placeholder="Enter your email" required>
-      <button type="submit">Subscribe</button>
-    </form>
-  </section>
-
-  <!-- Social Gallery -->
-  <section class="container">
-    <h2 class="section-title">Inspiration Gallery</h2>
-    <div class="social-gallery">
-      <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267" alt="Gallery 1">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-8cv0DhPb7sTvRPB15oUpt1PTV5e0qmzQUw&s" alt="Gallery 2">
-      <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e" alt="Gallery 3">
-      <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48" alt="Gallery 4">
-    </div>
-  </section>
-
-  <!-- Redesigned Footer with Font Awesome Icons -->
   <footer>
     <div class="footer-container">
-      <div class="footer-logo">DWA & More</div>
-      <div class="footer-links">
-        <h4>Explore</h4>
-        <a href="#">Home</a>
-        <a href="#">Blog</a>
-        <a href="#">About</a>
-        <a href="#">Contact</a>
-      </div>
-      <div class="footer-social">
-        <h4>Follow Us</h4>
-        <div class="social-icons">
-          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-          <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-          <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>
-          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+      <div class="footer-section scroll-reveal">
+        <div class="footer-logo">DWA & More</div>
+        <p>Bringing you the finest in luxury, design, and inspiration since 2020.</p>
+        <div class="footer-social">
+          <h4>Follow Us</h4>
+          <div class="social-icons">
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          </div>
         </div>
       </div>
+
+      <div class="footer-section footer-links scroll-reveal">
+        <h4>Explore</h4>
+        <a href="#home">Home</a>
+        <a href="#blog">Blog</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Sitemap</a>
+      </div>
+
+      <div class="footer-section footer-contact scroll-reveal" id="contact">
+        <h4>Contact Us</h4>
+        <p>Email: <a href="mailto:contact@dwa-blog.com">contact@dwa-blog.com</a></p>
+        <p>Phone: <a href="tel:+1234567890">+1 (234) 567-890</a></p>
+        <p>Address: 123 Elegance St, Suite 100, Luxe City, LC 12345</p>
+      </div>
+
+      <div class="footer-section footer-newsletter scroll-reveal">
+        <h4>Stay Inspired</h4>
+        <p>Subscribe to our newsletter for the latest updates.</p>
+        <form>
+          <input type="email" placeholder="Enter your email" required>
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
     </div>
-    <div class="footer-bottom">
-      <p>© 2025 DWA & More. Crafted with elegance.</p>
+    <div class="footer-bottom scroll-reveal">
+      <p>© 2025 DWA & More. Crafted with elegance. All rights reserved.</p>
     </div>
   </footer>
 
@@ -660,6 +1194,77 @@
     // Hamburger menu toggle
     document.querySelector('.hamburger').addEventListener('click', () => {
       document.querySelector('.nav-links').classList.toggle('active');
+    });
+
+    // Custom smooth scroll function with easing
+    function smoothScroll(target, duration = 800) {
+      const targetElement = document.querySelector(target);
+      if (!targetElement) return;
+
+      const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - 80; // Offset for header
+      const startPosition = window.pageYOffset;
+      const distance = targetPosition - startPosition;
+      let startTime = null;
+
+      function ease(t, b, c, d) {
+        t /= d / 2;
+        if (t < 1) return c / 2 * t * t + b;
+        t--;
+        return -c / 2 * (t * (t - 2) - 1) + b;
+      }
+
+      function animation(currentTime) {
+        if (startTime === null) startTime = currentTime;
+        const timeElapsed = currentTime - startTime;
+        const run = ease(timeElapsed, startPosition, distance, duration);
+        window.scrollTo(0, run);
+        if (timeElapsed < duration) requestAnimationFrame(animation);
+      }
+
+      requestAnimationFrame(animation);
+    }
+
+    // Smooth scroll for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = this.getAttribute('href');
+        smoothScroll(target, 800);
+      });
+    });
+
+    // Scroll progress bar
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrollPercentage = (scrollTop / scrollHeight) * 100;
+      document.querySelector('.scroll-progress').style.width = scrollPercentage + '%';
+
+      // Header scroll effect
+      const header = document.querySelector('.header-container');
+      if (window.scrollY > 0) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+
+      // Scroll reveal animations
+      const revealElements = document.querySelectorAll('.scroll-reveal');
+      revealElements.forEach(element => {
+        const rect = element.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.85) {
+          element.classList.add('visible');
+        }
+      });
+    });
+
+    // Handle hash links on page load
+    window.addEventListener('DOMContentLoaded', () => {
+      if (window.location.hash) {
+        setTimeout(() => {
+          smoothScroll(window.location.hash, 800);
+        }, 0);
+      }
     });
   </script>
 </body>
